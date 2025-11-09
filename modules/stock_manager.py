@@ -87,8 +87,8 @@ class StockManagerDialog(QDialog):
         # Create product buttons
         for idx, row in self.products.iterrows():
             product_widget = QWidget()
-            product_widget.setMinimumHeight(60)
-            product_widget.setMaximumHeight(60)
+            product_widget.setMinimumHeight(70)
+            product_widget.setMaximumHeight(70)
             
             # Determine color based on stock
             if int(row['stock']) <= 5:
@@ -123,15 +123,15 @@ class StockManagerDialog(QDialog):
             h_layout.addWidget(info_label, 1)
             
             # Update button
-            update_btn = QPushButton("✏️ Update")
+            update_btn = QPushButton("Update Stock")
             update_btn.setFont(QFont("Arial", 12, QFont.Weight.Bold))
-            update_btn.setFixedSize(QSize(100, 40))
+            update_btn.setMinimumSize(QSize(140, 45))
             update_btn.setStyleSheet("""
                 QPushButton {
                     background-color: #3b82f6;
                     color: white;
                     border-radius: 8px;
-                    padding: 10px;
+                    padding: 10px 15px;
                 }
                 QPushButton:hover {
                     background-color: #2563eb;

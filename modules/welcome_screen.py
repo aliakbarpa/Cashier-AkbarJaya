@@ -232,7 +232,7 @@ class WelcomeScreen(QDialog):
         
         # Button 1: Start as Cashier
         cashier_btn = QPushButton()
-        cashier_btn.setMinimumHeight(100)
+        cashier_btn.setMinimumHeight(120)
         cashier_btn.setCursor(Qt.CursorShape.PointingHandCursor)
         cashier_btn.setStyleSheet("""
             QPushButton {
@@ -252,14 +252,17 @@ class WelcomeScreen(QDialog):
         """)
         
         cashier_content = QVBoxLayout()
+        cashier_content.setSpacing(8)
         cashier_title = QLabel(tr('cashier_option_title'))
         cashier_title.setFont(QFont("Arial", 20, QFont.Weight.Bold))
         cashier_title.setStyleSheet("color: white;")
+        cashier_title.setWordWrap(True)
         self.ui_elements['cashier_title'] = cashier_title
         
         cashier_desc = QLabel(tr('cashier_option_desc'))
         cashier_desc.setFont(QFont("Arial", 14))
         cashier_desc.setStyleSheet("color: #d1fae5; margin-top: 5px;")
+        cashier_desc.setWordWrap(True)
         self.ui_elements['cashier_desc'] = cashier_desc
         
         cashier_content.addWidget(cashier_title)
@@ -270,7 +273,7 @@ class WelcomeScreen(QDialog):
         
         # Button 2: Update Stock
         stock_btn = QPushButton()
-        stock_btn.setMinimumHeight(100)
+        stock_btn.setMinimumHeight(120)
         stock_btn.setCursor(Qt.CursorShape.PointingHandCursor)
         stock_btn.setStyleSheet("""
             QPushButton {
@@ -290,14 +293,17 @@ class WelcomeScreen(QDialog):
         """)
         
         stock_content = QVBoxLayout()
+        stock_content.setSpacing(8)
         stock_title = QLabel(tr('stock_option_title'))
         stock_title.setFont(QFont("Arial", 20, QFont.Weight.Bold))
         stock_title.setStyleSheet("color: white;")
+        stock_title.setWordWrap(True)
         self.ui_elements['stock_title'] = stock_title
         
         stock_desc = QLabel(tr('stock_option_desc'))
         stock_desc.setFont(QFont("Arial", 14))
         stock_desc.setStyleSheet("color: #dbeafe; margin-top: 5px;")
+        stock_desc.setWordWrap(True)
         self.ui_elements['stock_desc'] = stock_desc
         
         stock_content.addWidget(stock_title)
@@ -308,7 +314,7 @@ class WelcomeScreen(QDialog):
         
         # Button 3: Update Prices
         price_btn = QPushButton()
-        price_btn.setMinimumHeight(100)
+        price_btn.setMinimumHeight(120)
         price_btn.setCursor(Qt.CursorShape.PointingHandCursor)
         price_btn.setStyleSheet("""
             QPushButton {
@@ -328,14 +334,17 @@ class WelcomeScreen(QDialog):
         """)
         
         price_content = QVBoxLayout()
+        price_content.setSpacing(8)
         price_title = QLabel(tr('price_option_title'))
         price_title.setFont(QFont("Arial", 20, QFont.Weight.Bold))
         price_title.setStyleSheet("color: white;")
+        price_title.setWordWrap(True)
         self.ui_elements['price_title'] = price_title
         
         price_desc = QLabel(tr('price_option_desc'))
         price_desc.setFont(QFont("Arial", 14))
         price_desc.setStyleSheet("color: #ede9fe; margin-top: 5px;")
+        price_desc.setWordWrap(True)
         self.ui_elements['price_desc'] = price_desc
         
         price_content.addWidget(price_title)

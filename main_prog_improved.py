@@ -41,7 +41,7 @@ class LargePaymentDialog(QDialog):
     def __init__(self, parent, total_amount):
         super().__init__(parent)
         self.setWindowTitle("Payment")
-        self.setGeometry(250, 150, 900, 700)  # Much larger window
+        self.resize(900, 650)  # Reduced height to fit buttons without scrolling
         self.setStyleSheet("QDialog { background-color: #f8fafc; }")
         self.setModal(True)
         
@@ -49,40 +49,41 @@ class LargePaymentDialog(QDialog):
         self.payment_amount = 0.0
         
         self.init_ui()
+        self.center_on_screen()  # Center dialog on screen
     
     def init_ui(self):
         """Initialize payment dialog with large UI elements"""
         layout = QVBoxLayout()
-        layout.setSpacing(30)
+        layout.setSpacing(20)  # Reduced spacing to fit everything
         self.setLayout(layout)
         
-        # Title
+        # Title - Smaller padding
         title = QLabel("💳 PAYMENT")
-        title.setFont(QFont("Arial", 48, QFont.Weight.Bold))
+        title.setFont(QFont("Arial", 42, QFont.Weight.Bold))
         title.setAlignment(Qt.AlignmentFlag.AlignCenter)
         title.setStyleSheet("""
             color: white;
             background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
                 stop:0 #10b981, stop:1 #059669);
-            padding: 40px;
+            padding: 25px;
             border-radius: 15px;
         """)
         layout.addWidget(title)
         
-        # Total amount display - VERY LARGE
+        # Total amount display - Slightly smaller
         total_label = QLabel(f"TOTAL AMOUNT:")
-        total_label.setFont(QFont("Arial", 36, QFont.Weight.Bold))
+        total_label.setFont(QFont("Arial", 30, QFont.Weight.Bold))
         total_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        total_label.setStyleSheet("color: #1e40af; margin-top: 20px;")
+        total_label.setStyleSheet("color: #1e40af; margin-top: 10px;")
         layout.addWidget(total_label)
         
         total_value = QLabel(f"${self.total_amount:.2f}")
-        total_value.setFont(QFont("Arial", 72, QFont.Weight.Bold))
+        total_value.setFont(QFont("Arial", 60, QFont.Weight.Bold))
         total_value.setAlignment(Qt.AlignmentFlag.AlignCenter)
         total_value.setStyleSheet("""
             color: #dc2626;
             background-color: #fee2e2;
-            padding: 30px;
+            padding: 20px;
             border-radius: 15px;
             border: 5px solid #ef4444;
         """)
@@ -100,18 +101,18 @@ class LargePaymentDialog(QDialog):
         input_container.setLayout(input_layout)
         
         payment_label = QLabel("💵 Enter Payment Received:")
-        payment_label.setFont(QFont("Arial", 28, QFont.Weight.Bold))
+        payment_label.setFont(QFont("Arial", 24, QFont.Weight.Bold))
         payment_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        payment_label.setStyleSheet("color: #1e293b; margin-bottom: 20px;")
+        payment_label.setStyleSheet("color: #1e293b; margin-bottom: 15px;")
         input_layout.addWidget(payment_label)
         
         self.payment_input = QLineEdit()
-        self.payment_input.setFont(QFont("Arial", 64, QFont.Weight.Bold))
+        self.payment_input.setFont(QFont("Arial", 52, QFont.Weight.Bold))
         self.payment_input.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.payment_input.setPlaceholderText("0.00")
         self.payment_input.setStyleSheet("""
             QLineEdit {
-                padding: 30px;
+                padding: 20px;
                 border: 5px solid #3b82f6;
                 border-radius: 15px;
                 background-color: #eff6ff;
@@ -132,17 +133,17 @@ class LargePaymentDialog(QDialog):
         buttons_layout.setSpacing(20)
         buttons_container.setLayout(buttons_layout)
         
-        # Confirm button
+        # Confirm button - Smaller but still large enough
         confirm_btn = QPushButton("✅\nCONFIRM\nPAYMENT")
-        confirm_btn.setFont(QFont("Arial", 28, QFont.Weight.Bold))
-        confirm_btn.setMinimumSize(QSize(350, 180))
+        confirm_btn.setFont(QFont("Arial", 24, QFont.Weight.Bold))
+        confirm_btn.setMinimumSize(QSize(350, 120))
         confirm_btn.setCursor(Qt.CursorShape.PointingHandCursor)
         confirm_btn.setStyleSheet("""
             QPushButton {
                 background-color: #10b981;
                 color: white;
                 border-radius: 20px;
-                padding: 20px;
+                padding: 15px;
             }
             QPushButton:hover {
                 background-color: #059669;
@@ -151,17 +152,17 @@ class LargePaymentDialog(QDialog):
         confirm_btn.clicked.connect(self.validate_payment)
         buttons_layout.addWidget(confirm_btn)
         
-        # Cancel button
+        # Cancel button - Smaller but still large enough
         cancel_btn = QPushButton("❌\nCANCEL")
-        cancel_btn.setFont(QFont("Arial", 28, QFont.Weight.Bold))
-        cancel_btn.setMinimumSize(QSize(350, 180))
+        cancel_btn.setFont(QFont("Arial", 24, QFont.Weight.Bold))
+        cancel_btn.setMinimumSize(QSize(350, 120))
         cancel_btn.setCursor(Qt.CursorShape.PointingHandCursor)
         cancel_btn.setStyleSheet("""
             QPushButton {
                 background-color: #ef4444;
                 color: white;
                 border-radius: 20px;
-                padding: 20px;
+                padding: 15px;
             }
             QPushButton:hover {
                 background-color: #dc2626;
@@ -223,6 +224,15 @@ class LargePaymentDialog(QDialog):
             error_msg.exec()
             self.payment_input.setFocus()
             self.payment_input.selectAll()
+    
+    def center_on_screen(self):
+        """Center the dialog on the current screen"""
+        screen = QApplication.primaryScreen()
+        if screen:
+            screen_geometry = screen.availableGeometry()
+            x = (screen_geometry.width() - self.width()) // 2
+            y = (screen_geometry.height() - self.height()) // 2
+            self.move(x, y)
 
 ##FIXED version
 class LargeCompletionDialog(QDialog):
@@ -231,16 +241,7 @@ class LargeCompletionDialog(QDialog):
     def __init__(self, parent, payment, change):
         super().__init__(parent)
         self.setWindowTitle("Transaction Complete")
-        
-        # --- ORIGINAL FIXED SIZE ---
-        # self.setGeometry(250, 150, 900, 700)  # Much larger window
-        
-        # --- FIXED VERSION: allow resizing + move to center later ---
-        self.resize(900, 800)
-        self.setMinimumHeight(800)
-        self.setSizeGripEnabled(True)
-        # self.move(250, 150)  # commented, replaced with center_on_screen() below
-
+        self.resize(900, 650)  # Optimized height to fit without scrolling
         self.setStyleSheet("QDialog { background-color: #f8fafc; }")
         self.setModal(True)
         
@@ -248,112 +249,95 @@ class LargeCompletionDialog(QDialog):
         self.change = change
         
         self.init_ui()
-        self.center_on_screen()  # <-- auto center after building UI
+        self.center_on_screen()  # Center on screen
     
     def init_ui(self):
         """Initialize completion dialog with large UI elements"""
-
-        # --- ORIGINAL DIRECT LAYOUT ---
-        # layout = QVBoxLayout()
-        # layout.setSpacing(30)
-        # self.setLayout(layout)
-        
-        # --- FIX VERSION: wrap layout inside QScrollArea so content scrolls if too tall ---
-        scroll_area = QScrollArea()
-        scroll_area.setWidgetResizable(True)
-
-        container = QWidget()
         layout = QVBoxLayout()
-        layout.setSpacing(30)
-        container.setLayout(layout)
-
-        scroll_area.setWidget(container)
-
-        main_layout = QVBoxLayout()
-        main_layout.addWidget(scroll_area)
-        self.setLayout(main_layout)
+        layout.setSpacing(15)  # Reduced spacing to fit everything
+        self.setLayout(layout)
         
-        # Success icon and title
+        # Success icon and title - Smaller padding
         title = QLabel("✅ TRANSACTION\nCOMPLETE!")
-        title.setFont(QFont("Arial", 56, QFont.Weight.Bold))
+        title.setFont(QFont("Arial", 44, QFont.Weight.Bold))
         title.setAlignment(Qt.AlignmentFlag.AlignCenter)
         title.setStyleSheet("""
             color: white;
             background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
                 stop:0 #10b981, stop:1 #059669);
-            padding: 50px;
+            padding: 30px;
             border-radius: 20px;
         """)
         layout.addWidget(title)
         
-        # Payment received
+        # Payment received - Smaller
         payment_container = QWidget()
         payment_container.setStyleSheet("""
             background-color: #dbeafe;
             border-radius: 15px;
-            padding: 30px;
+            padding: 20px;
             border: 4px solid #3b82f6;
         """)
         payment_layout = QVBoxLayout()
         payment_container.setLayout(payment_layout)
         
         payment_label = QLabel("💵 Payment Received:")
-        payment_label.setFont(QFont("Arial", 32, QFont.Weight.Bold))
+        payment_label.setFont(QFont("Arial", 26, QFont.Weight.Bold))
         payment_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         payment_label.setStyleSheet("color: #1e40af;")
         payment_layout.addWidget(payment_label)
         
         payment_value = QLabel(f"${self.payment:.2f}")
-        payment_value.setFont(QFont("Arial", 64, QFont.Weight.Bold))
+        payment_value.setFont(QFont("Arial", 52, QFont.Weight.Bold))
         payment_value.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        payment_value.setStyleSheet("color: #1e40af; margin: 10px;")
+        payment_value.setStyleSheet("color: #1e40af; margin: 8px;")
         payment_layout.addWidget(payment_value)
         
         layout.addWidget(payment_container)
         
-        # Change to give
+        # Change to give - Smaller
         change_container = QWidget()
         change_container.setStyleSheet("""
             background-color: #d1fae5;
             border-radius: 15px;
-            padding: 30px;
+            padding: 20px;
             border: 4px solid #10b981;
         """)
         change_layout = QVBoxLayout()
         change_container.setLayout(change_layout)
         
         change_label = QLabel("💰 Change to Return:")
-        change_label.setFont(QFont("Arial", 32, QFont.Weight.Bold))
+        change_label.setFont(QFont("Arial", 26, QFont.Weight.Bold))
         change_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         change_label.setStyleSheet("color: #047857;")
         change_layout.addWidget(change_label)
         
         change_value = QLabel(f"${self.change:.2f}")
-        change_value.setFont(QFont("Arial", 72, QFont.Weight.Bold))
+        change_value.setFont(QFont("Arial", 56, QFont.Weight.Bold))
         change_value.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        change_value.setStyleSheet("color: #047857; margin: 10px;")
+        change_value.setStyleSheet("color: #047857; margin: 8px;")
         change_layout.addWidget(change_value)
         
         layout.addWidget(change_container)
         
-        # Thank you message
+        # Thank you message - Smaller
         thank_you = QLabel("🙏 Thank You!")
-        thank_you.setFont(QFont("Arial", 36, QFont.Weight.Bold))
+        thank_you.setFont(QFont("Arial", 28, QFont.Weight.Bold))
         thank_you.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        thank_you.setStyleSheet("color: #6366f1; margin: 20px;")
+        thank_you.setStyleSheet("color: #6366f1; margin: 12px;")
         layout.addWidget(thank_you)
         
-        # OK button - EXTRA LARGE
+        # OK button - Smaller but still large
         ok_btn = QPushButton("✅\nOK")
-        ok_btn.setFont(QFont("Arial", 32, QFont.Weight.Bold))
-        ok_btn.setMinimumSize(QSize(400, 150))
+        ok_btn.setFont(QFont("Arial", 28, QFont.Weight.Bold))
+        ok_btn.setMinimumSize(QSize(400, 120))
         ok_btn.setCursor(Qt.CursorShape.PointingHandCursor)
         ok_btn.setStyleSheet("""
             QPushButton {
                 background-color: #3b82f6;
                 color: white;
                 border-radius: 20px;
-                padding: 20px;
+                padding: 15px;
             }
             QPushButton:hover {
                 background-color: #2563eb;

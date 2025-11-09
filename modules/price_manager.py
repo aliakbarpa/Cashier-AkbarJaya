@@ -87,8 +87,8 @@ class PriceManagerDialog(QDialog):
         # Create product buttons
         for idx, row in self.products.iterrows():
             product_widget = QWidget()
-            product_widget.setMinimumHeight(60)
-            product_widget.setMaximumHeight(60)
+            product_widget.setMinimumHeight(70)
+            product_widget.setMaximumHeight(70)
             product_widget.setStyleSheet("""
                 QWidget {
                     background-color: #ffffff;
@@ -114,15 +114,15 @@ class PriceManagerDialog(QDialog):
             h_layout.addWidget(info_label, 1)
             
             # Update button
-            update_btn = QPushButton("✏️ Update")
+            update_btn = QPushButton("Update Price")
             update_btn.setFont(QFont("Arial", 12, QFont.Weight.Bold))
-            update_btn.setFixedSize(QSize(100, 40))
+            update_btn.setMinimumSize(QSize(140, 45))
             update_btn.setStyleSheet("""
                 QPushButton {
                     background-color: #8b5cf6;
                     color: white;
                     border-radius: 8px;
-                    padding: 10px;
+                    padding: 10px 15px;
                 }
                 QPushButton:hover {
                     background-color: #7c3aed;
