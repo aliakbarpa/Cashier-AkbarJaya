@@ -1,0 +1,30 @@
+product_id,name,category,price,stock
+AJ001,Milo 3-in-1,Drink,4.9,7
+AJ002,Maggi Curry,Food,3.5,5
+AJ003,Sprite Can,Drink,2.6,6
+AJ004,Rice 5kg,Food,16.5,8
+AJ005,Battery AA,Electronics,3.0,9
+PK001,Pakan_Ternak_1,Ternak_1,3.4,8
+PK002,Pakan_Ternak_2,Ternak_2,5.5,9
+PK003,Pakan_Ternak_3,Ternak_3,7.2,16
+PK004,Pakan_Ternak_4,Ternak_4,9.1,8
+PK005,Pakan_Ternak_5,Ternak_5,11.0,7
+PK006,Pakan_Ternak_6,Ternak_6,13.9,7
+PK007,Pakan_Ternak_7,Ternak_7,14.8,12
+PK008,Pakan_Ternak_8,Ternak_8,17.5,43
+PK009,Pakan_Ternak_9,Ternak_9,18.6,38
+OB001,Obat_Ternak_1,Obat_1,2.0,8
+OB002,Obat_Ternak_2,Obat_2,3.0,10
+OB003,Obat_Ternak_3,Obat_3,5.0,7
+OB004,Obat_Ternak_4,Obat_4,6.0,6
+OB005,Obat_Ternak_5,Obat_5,7.5,7
+OB006,Obat_Ternak_6,Obat_6,8.9,10
+OB007,Obat_Ternak_7,Obat_7,10.3,10
+OB008,Obat_Ternak_8,Obat_8,11.7,9
+OB009,Obat_Ternak_9,Obat_9,13.1,9
+OB010,Obat_Ternak_10,Obat_10,14.5,7
+OB011,Obat_Ternak_11,Obat_11,15.9,7
+OB012,Obat_Ternak_12,Obat_12,17.3,7
+OB013,Obat_Ternak_13,Obat_13,18.7,7
+OB014,Obat_Ternak_14,Obat_14,20.1,9
+OB015,Obat_Ternak_15,Obat_15,23.5,8

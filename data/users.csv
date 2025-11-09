@@ -1,0 +1,6 @@
+employee_id,name,role,date_registered,active
+ADMIN001,Administrator,Manager,11/3/2025 20:19,True
+123456,Ayyubi,Cashier,11/3/2025 20:20,True
+789456,Syafii,Manager,11/3/2025 20:22,True
+369852,Avi,Supervisor,2025-11-04 21:06:54,True
+147852,Mama,Employee,2025-11-04 21:19:24,True
